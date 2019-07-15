@@ -1,0 +1,128 @@
+import java.util.ArrayList;
+import java.util.List;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.WriteResult;
+public class SelectAllDocumentfromCollection 
+{ 
+private static void setUpTestData(DBCollection collection)
+    {
+        for (int i=1; i <= 10; i++) 
+        {
+            collection.insert(new BasicDBObject().append("employeeId", i).append("employeeName", "TestEmployee_"+i));
+        }  
+    }
+private static void selectalldocuments(DBCollection collection)
+{
+	System.out.println("ALL Documents from collection");
+	DBCursor cursor=collection.find();
+	while(cursor.hasNext())
+	{
+		System.out.println(cursor.next());
+	}
+}
+private static void select_first_record_inc_ollection(DBCollection collection)
+
+{
+	System.out.println("First record in collection");
+	DBObject object=collection.findOne();
+	System.out.println( object); 
+}
+private static void Select_single_record_and_field_by_record_number(DBCollection collection)
+{
+	System.out.println("select single record and field by record number");
+	BasicDBObject whereQuery=new BasicDBObject();
+	whereQuery.put("employeeId",5);
+	BasicDBObject fields=new BasicDBObject();
+	fields.put("employeId",1);
+	DBCursor cursor=collection.find(whereQuery,fields);
+	while(cursor.hasNext())
+	{
+		System.out.println(cursor.next());
+	}
+}
+private static void select_All_Record_by_Record_Number(DBCollection collection)
+{
+	System.out.println("selec all recrd by recordnumber");
+	BasicDBObject whereQuery=new BasicDBObject();
+	whereQuery.put("employeeId",5);
+	DBCursor cursor=collection.find(whereQuery);
+	while(cursor.hasNext())
+	{
+		System.out.println(cursor.next());
+	}
+}
+private static void in_Example(DBCollection collection)
+{
+	System.out.println("IN base example");
+	BasicDBObject inQuery=new BasicDBObject();
+	List<Integer> lists=new ArrayList<Integer>();
+	lists.add(2);
+	lists.add(4);
+	lists.add(5);
+	inQuery.put("employeeId",new BasicDBObject("$in",lists));
+	DBCursor cursor=collection.find(inQuery);
+	while(cursor.hasNext())
+	{
+		System.out.println(cursor.next());	
+	}	
+}
+private static void less_than_or_greater_than(DBCollection collection)
+{
+	System.out.println("less than or greater than");
+	BasicDBObject getQuery=new BasicDBObject();
+	getQuery.put("employeeId",new BasicDBObject("$gt",2).append("$lt",5));
+	DBCursor cursor=collection.find(getQuery);
+	while(cursor.hasNext())
+	{
+		System.out.println(cursor.next());
+	}
+}
+private static void negation_Not_In_Example(DBCollection collection)
+{
+	System.out.println("negation means not in(hide  from documents)");
+	BasicDBObject neQuery=new BasicDBObject();
+	neQuery.put("employeeId",new BasicDBObject("$ne",4));
+	DBCursor cursor=collection.find(neQuery);
+	while(cursor.hasNext())
+	{
+		System.out.println(cursor.next());
+	}
+}
+private static void and_logical_comarison_example(DBCollection collection)
+{
+	System.out.println("logical and comparison");
+	BasicDBObject andQuery=new BasicDBObject();
+	List<BasicDBObject> obj=new ArrayList<BasicDBObject>();
+	obj.add(new BasicDBObject("employeeId",2));
+	obj.add(new BasicDBObject("employeeName","TestEmployee_2"));
+	andQuery.put("$and",obj);
+	System.out.println(andQuery.toString());
+	DBCursor cursor=collection.find(andQuery);
+	while(cursor.hasNext())
+	{
+		System.out.println(cursor.next());
+	}
+}
+	public static void main(String[] args)
+	{
+	MongoClient mongo=new MongoClient("localhost",27017);
+	DB db=mongo.getDB("jana");
+	DBCollection collection=db.getCollection("Employee");
+	WriteResult result = collection.remove(new BasicDBObject());
+    System.out.println(result.toString());
+		setUpTestData(collection);
+		selectalldocuments(collection);
+		select_first_record_inc_ollection(collection);
+		Select_single_record_and_field_by_record_number(collection);
+		select_All_Record_by_Record_Number(collection);
+		in_Example(collection);
+		less_than_or_greater_than(collection);
+		negation_Not_In_Example(collection);
+		and_logical_comarison_example(collection);
+	}
+}
