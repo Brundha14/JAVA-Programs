@@ -1,0 +1,40 @@
+import java.util.Scanner;
+class NewAccount{
+	int accNumber,pinNumber;
+	double amount;
+	public boolean validate(double amount)
+	{
+		return false;
+	}
+	void display() {
+		
+	}
+	
+}
+public class MamAccount1{
+	public static void main(String[] args) {
+		int accNo=0;
+		String ch;
+		
+		Scanner s=new Scanner(System.in);
+		do {
+			System.out.println("accNum");
+			accNo=s.nextInt();
+			System.out.println(accNo);
+			System.out.println("Pin");
+			System.out.println("Amount");
+			ch=s.nextLine();
+			try {
+				
+				System.out.println("enter the deposit amount");
+			}
+			catch(Exception e)
+		   {
+				System.out.println("enter the valid amount");
+			}
+		}while(!ch.equals("no"));
+		s.close();
+	}
+	
+	
+}

@@ -1,0 +1,126 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+interface Notification
+{
+	 void notificationBySms();
+	 void notificationByEmail();
+	 void notificationByCourier();
+}
+ class Icici implements Notification
+{
+
+	@Override
+	public void notificationBySms()
+	{
+		
+		System.out.println("ICIC-Notification by SMS");
+	}
+
+	@Override
+	public void notificationByEmail() 
+	{
+		
+		System.out.println("ICIC-Notification by Email");
+	}
+
+	@Override
+	public void notificationByCourier() 
+	{
+		System.out.println("ICIC-Notification by Courier");	
+		
+	}
+	}
+ class Hdfc implements Notification
+ {
+
+	@Override
+	public void notificationBySms()
+	{
+		System.out.println("HDFE-Notification by SMS");
+		
+	}
+
+	@Override
+	public void notificationByEmail() 
+	{
+		System.out.println("HDFC-Notification by Email");
+		
+	}
+
+	@Override
+	public void notificationByCourier()
+	{
+		
+		System.out.println("HDFC-Notification by Courier");
+	}
+	 
+ }
+ class BankFacotry 
+ {
+	 public Icici getIcici()
+	 {
+		return new Icici();
+		 
+	 }
+	 public Hdfc getHdfc() 
+	 {
+		return new Hdfc();
+	 
+	 }
+ }
+	 
+public class BankTransaction
+{
+	
+	
+	@SuppressWarnings("null")
+	public static void main(String[] args) throws NumberFormatException, IOException 
+	{
+		Notification notify=null;
+		int choice, choice1;
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Welcome to Notification Setup");
+		System.out.println("please select your bank");
+		System.out.println("1)ICICI\n2)HDFC");
+		choice=Integer.parseInt(br.readLine());	
+		if(choice<3)
+		{
+	       
+		if(choice==1)
+		{
+			notify=new BankFacotry().getIcici();
+		}
+		else if(choice==2)
+		{
+			notify=new BankFacotry().getHdfc();
+		}
+		System.out.println("Enter the type if notification you want to enter");
+		System.out.println("1)SmS\n2)Mail\n3)courier");
+		choice1=Integer.parseInt(br.readLine());
+		if(choice1<4)
+		{
+			if(choice==1)
+			{   
+			notify.notificationBySms();
+	     	}
+		  else if(choice1==2)
+		    {
+			 notify.notificationByEmail();
+		    }
+		  else if(choice==3)
+		    {
+			notify.notificationByCourier();
+		   }
+		}
+		}
+		else
+		  {
+			System.out.println("Invalid Input");
+		  }
+		}
+		}
+		
+	
+	

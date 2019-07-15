@@ -1,0 +1,131 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+class Student
+{
+	private String id;
+	private String name;
+	private String emailid;
+	private String department;
+	public String getId()
+	{
+			return id;		
+	}
+	public void setId(String id)
+	{
+		this.id = id;	
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public void setName(String name) 
+	{
+		this.name = name;
+	}
+	public String getEmailid()
+	{
+		return emailid;
+	}
+	public void setEmailid(String emailid) 
+	{
+		this.emailid = emailid;
+	}
+	public String getDepartment() 
+	{
+		return department;
+	}
+	public void setDepartment(String department)
+	{
+		this.department = department;
+	}	
+}
+public class StudentMap
+{
+	public static void main(String[] args) throws NumberFormatException, IOException 
+	{
+		int num; 
+        BufferedReader br=new BufferedReader (new InputStreamReader(System.in));
+        System.out.println("Enter the number of students");
+        num=Integer.parseInt(br.readLine());
+        ArrayList<Student> al=new ArrayList<Student>();
+        
+       for(int i=0;i<num;i++)
+       {
+        System.out.println("Enter the details of student"+(i+1));
+        al.add(new Student());
+        al.get(i).setId(br.readLine());
+        al.get(i).setName(br.readLine());
+        al.get(i).setEmailid(br.readLine());
+        al.get(i).setDepartment(br.readLine());
+        HashMap<String,Student> map=new HashMap<String,Student>();
+       
+        map.put(al.get(i).getId(),al.get(i));
+       
+        /*
+        for(int i=0;i<num;i++)
+        {
+        	if(i==0)
+        	{ 
+        	map.put(s1.getId() ,s1.getName());
+        	map.put(s1.getId(),s1.getEmailid());
+        	map.put(s1.getId(),s1.getDepartment());
+        	}
+            System.out.println("Enter the student details 2");
+        	Student s2=new Student();
+            s2.setId(br.readLine());
+            s2.setName(br.readLine());
+            s2.setEmailid(br.readLine());
+            s2.setDepartment(br.readLine());
+        	if(i==1)
+        	{	 
+        		map.put(s2.getId() ,s2.getName());
+            	map.put(s2.getId(),s2.getEmailid());
+            	map.put(s2.getId(),s2.getDepartment());		
+        	} 
+        	System.out.println("Enter the student details 3"); 	 
+        	Student s3=new Student();
+            s3.setId(br.readLine());
+            s3.setName(br.readLine());
+            s3.setEmailid(br.readLine());
+            s3.setDepartment(br.readLine());
+        	if(i==2)   		
+        	{
+        		map.put(s3.getId() ,s3.getName());
+            	map.put(s3.getId(),s3.getEmailid());
+            	map.put(s3.getId(),s3.getDepartment());			     	    
+        	}
+        	 System.out.println("Enter the student details 4");
+        	 Student s4=new Student();
+             s4.setId(br.readLine());
+             s4.setName(br.readLine());
+             s4.setEmailid(br.readLine());
+             s4.setDepartment(br.readLine());
+        	 if(i==3)
+        	 {	
+        		 map.put(s4.getId(),s4.getName());
+             	 map.put(s4.getId(),s4.getEmailid());
+             	 map.put(s4.getId(),s4.getDepartment());        	
+        	 }
+        	 System.out.println("Enter the student details 5");
+        	 Student s5=new Student();
+             s5.setId(br.readLine());
+             s5.setName(br.readLine());
+             s5.setEmailid(br.readLine());
+             s5.setDepartment(br.readLine());
+             if(i==4)
+             {
+        		 map.put(s5.getId(),s5.getName());
+             	 map.put(s5.getId(),s5.getEmailid());
+             	 map.put(s5.getId(),s5.getDepartment());	
+             }
+             System.out.println("Enter the id of the student to be searched");
+             map.containsKey(br.readLine());
+             System.out.println("Student details");       
+            }*/	
+        }
+	}
+	}

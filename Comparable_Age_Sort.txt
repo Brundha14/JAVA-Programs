@@ -1,0 +1,81 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+public class Comparableagesort
+{
+
+	public static void main(String[] args) throws IOException 
+	{
+	   int num,age = 0;
+       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       System.out.println("Enter the number of passengers :");
+       num=Integer.parseInt(br.readLine());
+       ArrayList<String> list = new ArrayList<>();
+       ArrayList<Integer> list1 = new ArrayList<Integer>();
+       for(int i=0;i<num;i++)
+       { 
+    	   if(i==0)
+    	   {
+    		   System.out.println("Enter the passengers name 1 :");
+    		   list.add( br.readLine());
+    		   if(age<60)
+    		   {
+    			   System.out.println("Enter the age of passengers 1 :"); 
+    			   list1.add(Integer.parseInt(br.readLine()));     
+    		   }   
+    	   }
+    	   if(i==1)
+    	   {
+    		   System.out.println("Enter the passengers name 2:");
+    		   list.add( br.readLine());
+    		   if(age<60)
+    		   {
+    			   System.out.println("Enter the age of passengers 2:"); 
+    			   list1.add(Integer.parseInt(br.readLine()));     
+    		   }   
+    	   }
+    	   if(i==2)
+    	   {
+    		   System.out.println("Enter the passengers name 3 :");
+    		   list.add( br.readLine());
+    		   if(age<60)
+    		   {
+    			   System.out.println("Enter the age of passengers 3 :"); 
+    			   list1.add(Integer.parseInt(br.readLine()));     
+    		   }   
+    	   }
+    	   if(i==3)
+    	   {
+    		   System.out.println("Enter the passengers name 4 :");
+    		   list.add( br.readLine());
+    		   if(age<60)
+    		   {
+    			   System.out.println("Enter the age of passengers 4 :"); 
+    			   list1.add(Integer.parseInt(br.readLine()));
+    			     
+    		   }   
+    	   }
+    	   if(i==4)
+    	   {
+    		   System.out.println("Enter the passengers name 5 :");
+    		   list.add( br.readLine());
+    		   if(age<60)
+    		   {
+    			   System.out.println("Enter the age of passengers 5 :"); 
+    			   list1.add(Integer.parseInt(br.readLine()));
+    			     
+    		   }
+    		   System.out.println("Passengers Details by age(High to Low)"); 
+    		   Collections.sort(list);
+    		   System.out.println(list);
+    		   Collections.sort(list1);
+    		   System.out.println(list1);   
+    		   
+    	   }   
+    	 
+       }
+       
+	}
+
+}

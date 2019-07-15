@@ -1,0 +1,157 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+abstract class Match
+{
+	protected int currentScore;
+	private float currentOver;
+	private int target;	
+	public abstract  int CalculateBalls(int currentScore, float currentOver,int target);
+	public abstract float CalculateRunrate(int currentScore,float currentOver,int target );
+public int getCurrentScore() 
+	{
+	return currentScore;
+	}
+
+public void setCurrentScore(int currentScore) 
+	{
+	this.currentScore = currentScore;
+	}
+
+public float getCurrentOver()
+	{
+	return currentOver;
+	}
+
+public void setCurrentOver(float currentOver)
+	{
+	this.currentOver = currentOver;
+	}
+
+public int getTarget()
+	{
+	return target;
+	}
+
+public void setTarget(int target)
+	{
+	this.target = target;
+	}
+
+public void display() {
+	{
+		System.out.println("Requirements:");
+		System.out.println("Need :"+(getTarget()-getCurrentScore()) +"Run From"+ CalculateBalls(getCurrentScore(), getCurrentOver(), getTarget())+ " balls" );
+		System.out.println("Require Run Rate :"+CalculateRunrate(getCurrentScore(), getCurrentOver(), getTarget()));	
+	}
+
+}
+}
+class ODI extends Match
+{
+
+	@Override
+	public int CalculateBalls(int currentScore, float currentOver, int target)
+	{
+       int balls=(int) (currentOver*10);
+       balls=( balls/10)*6+(balls%10);
+       balls=50*6-balls;
+       return balls;
+	}
+
+	@Override
+	public float CalculateRunrate(int currentScore, float currentOver, int target)
+	{
+		float Runrate=target/50;
+		return Runrate;
+	}
+	
+}
+class T20 extends Match
+{
+	@Override
+	public int CalculateBalls(int currentScore, float currentOver, int target) 
+	{
+		 int balls1=(int) (currentOver*10);
+	     balls1=( balls1/10)*6+(balls1%10);
+	     balls1=20*6-balls1;
+	     return balls1;
+	}
+
+	@Override
+	public float CalculateRunrate(int currentScore, float currentOver, int target)
+	{
+		float Runrate1=target/20;
+		return Runrate1;
+		
+	}
+}
+		
+	
+	
+
+class Test extends Match
+{
+
+	@Override
+	public int CalculateBalls(int currentScore, float currentOver, int target)
+	{
+		 int balls2=(int) (currentOver*10);
+	     balls2=( balls2/10)*6+(balls2%10);
+	     balls2=90*6-balls2;
+	     return balls2;		
+	}
+
+	@Override
+	public float CalculateRunrate(int currentScore, float currentOver, int target)
+	{
+		float Runrate2=target/90;
+		return Runrate2;	
+	}
+
+	
+	}
+	
+
+public class CricketMatch {
+
+	public static void main(String[] args) throws NumberFormatException, IOException 
+	{
+		 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		 Match match = null;
+		 int target=0;int currentScore=0;float currentOver=0;
+	     System.out.println("Enter the Cricket Format");
+	     System.out.println("1.ODI\n2.T20\n3.Test");
+	     int ch=Integer.parseInt(br.readLine());
+	     if(ch<4) {
+	     System.out.println("Enter the Current ScoreS");
+	     currentScore=Integer.parseInt(br.readLine());
+	     System.out.println("Enter the Current over");
+	     currentOver=Float.parseFloat(br.readLine());
+	     System.out.println("Enter the Target");
+	     target=Integer.parseInt(br.readLine());
+	     }
+	     if(ch==1)
+	     {
+	    	 match=new ODI();
+	     }
+	     else if(ch==2)
+	     {
+	    	 match=new  T20();
+	     }
+	     else if(ch==3)
+	     {
+	    	 match=new Test();
+	     }
+	     else 
+	     {
+	    	 System.out.println("Invalid Formate Type");
+	     }  
+
+	   match.setCurrentOver(currentOver);
+	   match.setCurrentScore(currentScore);
+	   match.setTarget(target);
+	   match.display();
+	     	}
+}

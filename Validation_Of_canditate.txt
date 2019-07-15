@@ -1,0 +1,54 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+public class mamValidationofcanditateExc 
+{
+ public static void main(String[] args) throws NumberFormatException, IOException
+ {
+	 int age, salary=0;
+	 char gender='f';
+	 String name;
+	 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	 System.out.print("Enter the name:");
+	 name=br.readLine();
+	 System.out.println("Enter the age"); 
+	 age=Integer.parseInt(br.readLine());
+	 try {
+		 if(age < 18 || age >50)
+			throw new Exception("error");
+		 System.out.println("Enter the salary");
+		  salary=Integer.parseInt(br.readLine());
+		   try {
+		   if(salary<=0) 
+				throw new NumberFormatException("salary");
+				try {
+				System.out.println("Enter the gender (f/m) :");
+				gender=(char)br.read(); 
+				System.out.println(name);
+				 System.out.println(age);
+				 System.out.println(salary);
+				 System.out.println(gender);
+				 System.out.println("Best Wishes");
+				
+				}
+				catch(Exception e) {
+					System.out.println(e);
+				}
+		   
+		   }
+		   catch(NumberFormatException ex)
+			 
+			{
+				System.out.println("Registration failed. Salary cannot be a negative interger");
+			}
+		 
+			
+		}
+		catch(Exception e)
+	 
+		{
+			System.out.println("Registration failed. Age should be greater than 18 and less than 50");
+		}
+   }
+}
+ 
