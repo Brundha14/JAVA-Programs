@@ -1,0 +1,17 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class googlewebpage 
+{
+	
+	public static void main(String[] args) 
+	{
+		String projectPath=System.getProperty("user.dir");
+		System.out.println("projectpath" + projectPath);
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\AARTHIVEERA\\workspace\\seleniummaven2\\chromebrowserpath\\seleniumpage\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		//driver.get("http://seleniumhq.org/");
+		driver.get("https://www.google.com");
+	}
+
+}
